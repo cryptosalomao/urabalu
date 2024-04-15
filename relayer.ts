@@ -1,17 +1,13 @@
 import fs from "fs";
 import Queue from "bull";
+import { transactionSubmitter } from "./helpers";
 
 const TRANSACTIONS_FILE = "./crafted-transactions.txt";
 
 const submitTransaction = async (tx: string, id: number, done: any) => {
   await new Promise((resolve) => setTimeout(resolve, 350));
 
-  const request = await fetch("https://mempool.space/testnet/api/tx", {
-    method: "POST",
-    body: tx,
-  });
-
-  const data = await request.text();
+  const data = await transactionSubmitter(tx);
 
   console.log(
     `Transaction [${id}] ::`,
