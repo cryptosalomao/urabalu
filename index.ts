@@ -101,7 +101,7 @@ const createUtxo = (utxos: string) => {
 };
 
 const transactionsCrafter = (txid: string) => {
-  const utxos = Array.from({ length: 100 }, (_, i) => `${txid}:${i}`);
+  const utxos = Array.from({ length: 200 }, (_, i) => `${txid}:${i}`);
 
   utxos.forEach((utxo) => {
     const createdUtxo = createUtxo(utxo);
